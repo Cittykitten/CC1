@@ -1,0 +1,496 @@
+
+
+    :root{
+        --yellow: #ffe83d;
+        --light-brown: #ffeac7;
+        --dark-brown: #2b1801;
+        --pale-brown: #4b2e01;
+        --black: #000000;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--light-brown);
+      /* background-image: url(images/pexels-kindelmedia-9889058.jpg); */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: var(--dark-brown);
+      overflow-x: hidden;
+    }
+
+    header {
+      height: 90px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background-color: #ffffff;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      position: fixed;
+      z-index: 999;
+
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+
+    .active-page{
+      color: var(--dark-brown);
+      font-weight: bold;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-links a {
+      margin-left: 2rem;
+      text-decoration: none;
+      color: var(--dark-brown);
+      font-weight: 500;
+    }
+
+    .nav-links a:hover {
+      color: var(--yellow);
+    }
+
+    /* button{
+      display: none;
+    } */
+
+    .cta-btn{
+      margin-left: 2rem;
+      padding: 1rem 1.5rem;
+      background-color: var(--dark-brown);
+      color: var(--yellow);
+      border: 2px solid #2b1801;
+      border-radius: 5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .cta-btn:hover {
+      background-color: var(--pale-brown);
+    }
+    .center-content a{
+      background-color: var(--dark-brown);
+      color: var(--yellow);
+      border: 2px solid #2b1801;
+      border-radius: 5px;
+      font-weight: 600;
+      text-decoration: none;
+      padding: 0.8rem 1.8rem;
+    }
+
+    .center-content a:hover{
+      background: var(--pale-brown);
+    }
+    
+    /* .add-voice{
+      margin-left: 2rem;
+      padding: 1rem 1.5rem;
+      background-color: var(--dark-brown);
+      color: var(--yellow);
+      border: 2px solid #2b1801;
+      border-radius: 5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .add-voice:hover{
+      background-color: var(--pale-brown);
+    } */
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .hamburger span {
+      height: 3px;
+      width: 25px;
+      background: var(--dark-brown);
+      margin: 4px 0;
+      transition: all 0.3s ease;
+    }
+
+    .nav-links.mobile {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background-color: white;
+      padding: 1rem;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+    }
+
+    .nav-links.mobile.show {
+      display: flex;
+    }
+
+    .add-voice{
+      border: 2px solid;
+      background: var(--dark-brown);
+      color: var(--yellow);
+      padding: ;
+    }
+
+    .add-voice:hover{
+      background-color: var(--pale-brown);
+    }
+
+    .main-section {
+      /* background: linear-gradient(#00000065, #000000a4, #000000d5),url(images/garden-flowers-mae-fah-luang-garden-locate-doi-tung-chiang-rai-thailand.jpg); */
+      /* background-size: cover; */
+      /* background-repeat: no-repeat; */
+      /* background-attachment: scroll; */
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      padding: 4rem 2rem;
+      position: relative;
+    }
+
+    .image-left, .image-right {
+      flex: 1;
+      max-width: 400px;
+      margin: 1rem;
+    }
+
+    .image-left img {
+      width: 100%;
+      border-radius: 50%;
+    }
+
+    .image-right img {
+      width: 100%;
+      border-radius: 50% 50% 50% 50%/60% 60% 40% 40%;
+    }
+
+    .center-content {
+      flex: 1;
+      max-width: 500px;
+      text-align: center;
+    }
+
+    .center-content h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .center-content h1 .earth {
+      font-size: 1.5rem;
+    }
+
+    .center-content p {
+      margin-bottom: 1.5rem;
+      font-size: 1rem;
+    }
+
+    .floating-card {
+      position: absolute;
+      width: 120px;
+      padding: 1rem;
+      background: white;
+      border-radius: 1rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s;
+    }
+
+    .floating-card img {
+      width: 100%;
+      border-radius: 0.5rem;
+    }
+
+    .floating-card:hover {
+      transform: scale(1.05);
+    }
+
+    .card1 { top: 10%; left: 5%; transform: rotate(-5deg); }
+    .card2 { bottom: 10%; left: 20%; transform: rotate(5deg); }
+    .card3 { top: 20%; right: 10%; transform: rotate(-3deg); }
+
+    @media (max-width: 768px) {
+      .main-section {
+        flex-direction: column;
+      }
+      .floating-card { display: none; }
+      .nav-links {
+        display: none;
+      }
+      .hamburger {
+        display: flex;
+      }
+    }
+
+  .services-cont{
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    height: 100vh;
+    background: linear-gradient(#00000084, #000000a8, #000000ac),url(images/Screenshot\ 2025-05-22\ 104847.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+
+  .mini-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    align-items: center;
+    max-width: 800px;
+    width: 100%;
+    animation: wow 1.2s ease-in-out;
+  }
+
+  .mini-image-box {
+    position: relative;
+    flex: 1;
+    animation: sliinle 1s ease-out;
+  }
+
+  .mini-image-box img {
+    max-width: 100%;
+    border-radius: 8px;
+    display: block;
+    border: 20px solid #ffffff;
+  }
+
+  .mini-text {
+    flex: 1;
+    animation: sliinri 1s ease-out;
+  }
+
+  .mini-text h4 {
+    color: #888888;
+    margin-bottom: 0.5rem;
+    text-align: left;
+  }
+
+  .mini-text h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: var(--text);
+    text-align: left;
+  }
+
+  /* .mini-text h3 {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    color: var(--light-pink);
+    font-weight: 500;
+    text-align: left;
+  } */
+
+  .mini-text p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    text-align: left;
+  }
+
+  .mini-buttons {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .mini-buttons a{
+    background: transparent;
+    /* color: var(--dark-brown); */
+    color: #ffffff;
+    padding: 0.4rem 1.1rem;
+    border: 2px solid #ffffff;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease;
+    text-decoration: none;
+  }
+
+  .mini-buttons a:hover {
+    background-color: var(--dark-brown);
+    border-color: var(--yellow);
+    color: var(--yellow);
+  }
+
+  .mini-buttons button a{
+
+    text-decoration: none;
+  }
+
+  @keyframes sliinle {
+    from {
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes sliinri {
+    from {
+      opacity: 0;
+      transform: translateX(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes wow {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .mini-container {
+      flex-direction: column;
+    }
+
+    .mini-list {
+      position: relative;
+      top: auto;
+      left: auto;
+      margin-top: 1rem;
+    }
+
+    .mini-buttons {
+      justify-content: center;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+  .footer-container{
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+}
+
+  .ghana-footer {
+  background-color: var(--dark-brown);
+  color: var(--yellow);
+  padding: 40px 20px 20px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.footer-column {
+  flex: 1 1 220px;
+  min-width: 200px;
+}
+
+.footer-column h2, .footer-column h3 {
+  color: var(--yellow);
+  margin-bottom: 15px;
+}
+
+.footer-column p, .footer-column li {
+  font-size: 0.95em;
+  line-height: 1.6;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-column li {
+  margin-bottom: 8px;
+}
+
+.footer-column a {
+  text-decoration: none;
+  color: var(--light-brown);
+}
+
+.footer-column a:hover {
+  text-decoration: underline;
+}
+
+.subscribe input[type="email"] {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 4px;
+}
+
+.subscribe button {
+  background-color: var(--yellow);
+  color: var(--black);
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.subscribe button:hover {
+  background-color: var(--light-brown);
+  transform: scale(1.05);
+  font-weight: bold;
+}
+
+.socials a {
+  margin-right: 10px;
+  display: inline-block;
+}
+
+.socials img {
+  width: 24px;
+  height: 24px;
+  filter: brightness(0) invert(1);
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 0.85em;
+  color: var(--light-brown);
+}
+
+#thank-you {
+  transition: opacity 0.3s ease;
+}
+
+
+
+

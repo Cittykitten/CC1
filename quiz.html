@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Climate Ghana-Quiz</title>
+  <link rel="stylesheet" href="about.css">
+  <link rel="shortcut icon" href="images/logo.png" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" 
+  rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" 
+  integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" 
+  crossorigin="anonymous" 
+  referrerpolicy="no-referrer" />
+   <style>
+    :root {
+      --correct: #d4edda;
+      --wrong: #f8d7da;
+      --green: #28a745;
+      --red: #dc3545;
+      --main: #2b1801;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #fff8f0;
+      margin: 0;
+      padding: 20px;
+      /* display: flex; */
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+        header {
+      height: 90px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background-color: #ffffff;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      position: fixed;
+      z-index: 999;
+
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+
+    .logo img{
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      height: 20px;
+      width: 25px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .active-page{
+      color: var(--dark-brown);
+      font-weight: bold;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-links a {
+      margin-left: 2rem;
+      text-decoration: none;
+      color: var(--dark-brown);
+      font-weight: 500;
+    }
+
+    .nav-links a:hover {
+      color: var(--yellow);
+    }
+
+    .cta-btn {
+      margin-left: 2rem;
+      padding: 1rem 1.5rem;
+      background-color: var(--dark-brown);
+      color: var(--yellow);
+      border: 2px solid #2b1801;
+      border-radius: 5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .cta-btn:hover {
+      background-color: var(--pale-brown);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .hamburger span {
+      height: 3px;
+      width: 25px;
+      background: var(--dark-brown);
+      margin: 4px 0;
+      transition: all 0.3s ease;
+    }
+
+    .nav-links.mobile {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background-color: white;
+      padding: 1rem;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+    }
+
+    .nav-links.mobile.show {
+      display: flex;
+    }
+
+    .back{
+      display: block;
+      text-align: center;
+      margin: 0;
+    }
+    .quiz-shield{
+      margin-top: 90px;
+      margin-bottom: 50px;
+      display: flex;
+      justify-content: center;
+    }
+    .quiz-container {
+      max-width: 700px;
+      background: #fff;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      width: 100%;
+    }
+    .question {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+    }
+    .option {
+      display: block;
+      padding: 10px;
+      border: 2px solid var(--main);
+      border-radius: 8px;
+      margin-bottom: 12px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+    .option.correct {
+      background-color: var(--correct);
+      border-color: var(--green);
+    }
+    .option.wrong {
+      background-color: var(--wrong);
+      border-color: var(--red);
+    }
+    .feedback {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+    .btn {
+      padding: 10px 20px;
+      background: var(--main);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      margin-top: 20px;
+      cursor: pointer;
+    }
+    .btn:hover {
+      opacity: 0.9;
+    }
+    .progress {
+      margin: 15px 0;
+    }
+    .progress-bar {
+      height: 10px;
+      background-color: var(--main);
+      width: 0%;
+      transition: width 0.4s ease;
+      border-radius: 5px;
+    }
+    #scoreDisplay {
+      display: none;
+      font-size: 1.5rem;
+      text-align: center;
+      margin-top: 20px;
+    }
+    @media screen and (max-width: 768px) {
+  .footer-container{
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+}
+
+  .ghana-footer {
+  background-color: var(--dark-brown);
+  color: var(--yellow);
+  padding: 40px 20px 20px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.footer-column {
+  flex: 1 1 220px;
+  min-width: 200px;
+}
+
+.footer-column h2, .footer-column h3 {
+  color: var(--yellow);
+  margin-bottom: 15px;
+}
+
+.footer-column p, .footer-column li {
+  font-size: 0.95em;
+  line-height: 1.6;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-column li {
+  margin-bottom: 8px;
+}
+
+.footer-column a {
+  text-decoration: none;
+  color: var(--light-brown);
+}
+
+.footer-column a:hover {
+  text-decoration: underline;
+}
+
+.subscribe input[type="email"] {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 4px;
+}
+
+.subscribe button {
+  background-color: var(--yellow);
+  color: var(--black);
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.subscribe button:hover {
+  background-color: var(--light-brown);
+  transform: scale(1.05);
+  font-weight: bold;
+}
+
+.socials a {
+  margin-right: 10px;
+  display: inline-block;
+}
+
+.socials img {
+  width: 24px;
+  height: 24px;
+  filter: brightness(0) invert(1);
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 0.85em;
+  color: var(--light-brown);
+}
+
+#thank-you {
+  transition: opacity 0.3s ease;
+}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo"><img src="images/logo.png" alt="logo"><strong>Climate Ghana</strong></div>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="impacts.html">Impacts</a>
+      <a href="mitigation.html">Mitigations</a>
+      <a href="about.html"><span class="active-page">Learn</span></a>
+      <a href="trending.html">Blog</a>
+      <button class="cta-btn">Add Your Voice</button>
+    </nav>
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <nav class="nav-links mobile" id="mobileMenu">
+      <a href="index.html">Home</a>
+      <a href="impacts.html">Impacts</a>
+      <a href="mitigation.html">Mitigations</a>
+      <a href="about.html"><span class="active-page">Learn</span></a>
+      <a href="trending.html">Blog</a>
+      <button class="cta-btn">Add Your Voice</button>
+    </nav>
+  </header>
+
+ 
+
+  <div class="quiz-shield">
+
+
+  <div class="quiz-container">
+    <div class="progress">
+      <strong id="progressText">Question 1 of 5</strong>
+      <div style="background:#ccc;height:10px;border-radius:5px;">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+    </div>
+    <div class="question" id="questionText"></div>
+    <div id="optionsContainer"></div>
+    <div class="feedback" id="feedback"></div>
+    <button class="btn" id="nextBtn">Next</button>
+    <div id="scoreDisplay"></div>
+  </div>
+
+
+  <!-- <a class="back" href="about.html">Back to Learn Page</a> <br>
+  <a class="back" href="index.html">Back to home page</a> -->
+
+
+
+  <audio id="correctSound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_a0dba7ab28.mp3" preload="auto"></audio>
+  <audio id="wrongSound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_2c1445002d.mp3" preload="auto"></audio>
+  <audio id="finishSound" src="https://cdn.pixabay.com/download/audio/2022/11/29/audio_f59ecf8449.mp3" preload="auto"></audio>
+
+  <!-- <audio id="correctSound" src="https://cdn.pixabay.com/audio/2022/03/15/audio_c8f9259f69.mp3"></audio>
+<audio id="wrongSound" src="https://cdn.pixabay.com/audio/2022/03/15/audio_1f2cbe9741.mp3"></audio>
+<audio id="submitSound" src="https://cdn.pixabay.com/audio/2022/03/15/audio_005b244579.mp3"></audio> -->
+ 
+
+
+</div>
+
+
+
+
+ <footer class="ghana-footer">
+  <div class="footer-container">
+
+    <div class="footer-column subscribe">
+      <h2>Climate Ghana</h2>
+      <p>Subscribe to our newsletter to stay updated on climate action and events across Ghana.</p>
+    <form id="subscribe-form" onsubmit="showThankYou(event)">
+      <input type="email" id="email" placeholder="Enter your email" required />
+      <button type="submit">Subscribe</button>
+    </form>
+    <p id="thank-you" style="display: none; color: var(--yellow); margin-top: 10px;">
+      ✅ Thanks for subscribing!
+    </p>
+
+    </div>
+
+    <div class="footer-column">
+      <h3>Resources</h3>
+      <ul>
+        <li><a href="/about.html">Learn</a></li>
+        <li><a href="/trending.html">Blog</a></li>
+        <li><a href="https://acetforafrica.org/our-work/?gad_source=1&gad_campaignid=1489445445&gbraid=0AAAAAC-7cVuCReKnMpiBrY_U2fiX9mYSF&gclid=Cj0KCQjwotDBBhCQARIsAG5pinNTWJYIb9Ca2Dy-ToopkzJvbeaRUVkCFsMlexCk_hXCpv-3iO-xFoQaAulYEALw_wcB">Reports & Articles</a></li>
+        <li><a href="/about.html">FAQs</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      <h3>Take Action</h3>
+      <ul>
+        <li><a href="tri2.html">Climate Events</a></li>
+        <li><a href="https://populationmatters.org/campaigns/?gad_source=1&gad_campaignid=477059608&gbraid=0AAAAADyIiKAbLEjrICa6jnl32UpGaxTv3&gclid=Cj0KCQjwotDBBhCQARIsAG5pinOspdWUEkr00ZPMoMc36HmDp7Xycj7lCAQ_LTY02EqEf3axET_9GuoaAgCrEALw_wcB">Youth Campaigns</a></li>
+        <li><a href="voice.html">Join a club</a></li>
+        <li><a href="tri4.html">Take Action</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-column contact">
+      <h3>Contact Us</h3>
+      <p><strong>Address:</strong><br> Tema, Greater Accra, Ghana</p>
+      <p><strong>Email:</strong> <a href="mailto:tegahtiana14@gmail.com">tegahtiana14@gmail.com</a></p>
+      <p><strong>Phone:</strong> +233 246 229 036</p>
+      <div class="socials">
+        <a href="https://www.facebook.com/climatescienceinfo/"><i style="color: #ffffcc;" class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://x.com/ClimateGhana"><i style="color: #54ccff;" class="fa-brands fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/_climatechange4ghana/"><i style="color: #ff47c8;" class="fa-brands fa-instagram"></i></a>
+        <a href="https://www.youtube.com/watch?v=5xRW61ACU20"><i style="color: #ff3c3c;"  class="fa-brands fa-youtube"></i></a>
+      </div>
+    </div>
+
+  </div>
+  <div class="footer-bottom">
+    &copy; 2025 Climate Ghana. Built for awareness and change by tegah_tiana
+  </div>
+</footer>
+
+
+
+
+
+<script>
+  function showThankYou(event) {
+    event.preventDefault(); // prevent form from reloading page
+    document.getElementById('subscribe-form').style.display = 'none';
+    document.getElementById('thank-you').style.display = 'block';
+  }
+</script>
+
+  
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    let isOpen = false;
+    hamburger.addEventListener('click', () => {
+      isOpen = !isOpen;
+      mobileMenu.classList.toggle('show');
+
+      if (isOpen) {
+        hamburger.innerHTML = '&times;';
+      } else {
+        hamburger.innerHTML = '<span></span><span></span><span></span>';
+      }
+    });
+  </script>
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script>
+    const questions = [
+      {
+        question: "What is the main cause of climate change?",
+        options: ["Volcanoes", "Greenhouse gases", "Solar flares", "Wind"],
+        correct: 1
+      },
+      {
+        question: "Which gas is most responsible for global warming?",
+        options: ["CO₂", "Oxygen", "Nitrogen", "Helium"],
+        correct: 0
+      },
+      {
+        question: "Which renewable energy comes from the sun?",
+        options: ["Wind", "Hydro", "Solar", "Nuclear"],
+        correct: 2
+      },
+      {
+        question: "What do trees absorb from the atmosphere?",
+        options: ["Oxygen", "CO₂", "Nitrogen", "Hydrogen"],
+        correct: 1
+      },
+      {
+        question: "What can reduce carbon footprint?",
+        options: ["Using solar panels", "Burning coal", "Driving more", "Cutting forests"],
+        correct: 0
+      }
+    ];
+
+    let currentQ = 0;
+    let score = 0;
+    const questionText = document.getElementById("questionText");
+    const optionsContainer = document.getElementById("optionsContainer");
+    const feedback = document.getElementById("feedback");
+    const nextBtn = document.getElementById("nextBtn");
+    const progressText = document.getElementById("progressText");
+    const progressBar = document.getElementById("progressBar");
+    const scoreDisplay = document.getElementById("scoreDisplay");
+    const correctSound = document.getElementById("correctSound");
+    const wrongSound = document.getElementById("wrongSound");
+    const finishSound = document.getElementById("finishSound");
+
+    function loadQuestion() {
+      const q = questions[currentQ];
+      questionText.textContent = q.question;
+      feedback.textContent = "";
+      optionsContainer.innerHTML = "";
+      q.options.forEach((opt, i) => {
+        const btn = document.createElement("div");
+        btn.className = "option";
+        btn.textContent = opt;
+        btn.onclick = () => handleAnswer(btn, i);
+        optionsContainer.appendChild(btn);
+      });
+      progressText.textContent = `Question ${currentQ + 1} of ${questions.length}`;
+      progressBar.style.width = ((currentQ + 1) / questions.length * 100) + "%";
+      nextBtn.style.display = "none";
+    }
+
+    function handleAnswer(selected, index) {
+      const correct = questions[currentQ].correct;
+      const allOptions = optionsContainer.querySelectorAll(".option");
+      allOptions.forEach((opt, i) => {
+        opt.style.pointerEvents = "none";
+        if (i === correct) opt.classList.add("correct");
+        if (i === index && index !== correct) opt.classList.add("wrong");
+      });
+      if (index === correct) {
+        feedback.textContent = "✅ Correct!";
+        score++;
+        correctSound.play();
+      } else {
+        feedback.textContent = "❌ Try again next time.";
+        wrongSound.play();
+      }
+      nextBtn.style.display = "inline-block";
+    }
+
+    nextBtn.onclick = () => {
+      currentQ++;
+      if (currentQ < questions.length) {
+        loadQuestion();
+      } else {
+        showScore();
+      }
+    };
+
+    function showScore() {
+      questionText.style.display = "none";
+      optionsContainer.style.display = "none";
+      nextBtn.style.display = "none";
+      feedback.style.display = "none";
+      scoreDisplay.style.display = "block";
+      finishSound.play();
+      const percent = (score / questions.length) * 100;
+      scoreDisplay.innerHTML = `🎉 You scored ${score}/${questions.length} (${percent}%)`;
+      if (percent >= 80) {
+        confetti();
+      }
+    }
+
+    loadQuestion();
+  </script>
+</body>
+</html>
