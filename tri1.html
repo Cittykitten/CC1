@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Climate Change Solutions in Ghana</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    .solution {
+      background-color: #fff;
+      border-left: 5px solid #2f9e44;
+      margin-bottom: 30px;
+      padding: 20px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease;
+    }
+
+    .solution.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .solution h3 {
+      margin-top: 0;
+      color: #2f9e44;
+    }
+
+    .solution img {
+      width: 100%;
+      max-width: 500px;
+      border-radius: 8px;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="solution">
+      <h3>1. Clean & Renewable Energy</h3>
+      <p>Expand solar and wind power in areas with strong sun and wind conditions. Promote solar panels for households and off-grid communities. This reduces dependence on fossil fuels and creates green jobs.</p>
+      <img src="images/pexels-daniel-eliashevsky-30667400-11960501.jpg" alt="Solar energy installation">
+    </div>
+
+    <div class="solution">
+      <h3>2. Climate-Smart Agriculture</h3>
+      <p>Train farmers in techniques like drought-resistant crops, agroforestry, and organic methods. This increases yields and reduces emissions.</p>
+      <img src="https://via.placeholder.com/500x300?text=Farming+with+Trees" alt="Agroforestry technique">
+    </div>
+
+    <div class="solution">
+      <h3>3. Forest Protection & Reforestation</h3>
+      <p>Combat illegal logging, plant native trees, and support community forest initiatives to restore Ghana’s green cover.</p>
+      <img src="https://via.placeholder.com/500x300?text=Tree+Planting+Campaign" alt="Tree planting activity">
+    </div>
+
+    <div class="solution">
+      <h3>4. Sustainable Transportation</h3>
+      <p>Develop electric bus systems, improve public transport, and create infrastructure for cycling and walking to reduce vehicle emissions.</p>
+      <img src="https://via.placeholder.com/500x300?text=Electric+Bus+Ghana" alt="Electric bus in city">
+    </div>
+
+    <div class="solution">
+      <h3>5. Urban Resilience</h3>
+      <p>Design flood-resistant drainage systems and promote green roofs, rooftop gardens, and eco-friendly construction in urban areas.</p>
+      <img src="https://via.placeholder.com/500x300?text=Green+Roof+Accra" alt="Green infrastructure in urban space">
+    </div>
+
+    <div class="solution">
+      <h3>6. Waste Management & Circular Economy</h3>
+      <p>Encourage recycling, composting, and upcycling. Ban single-use plastics and support innovations that turn waste into resources.</p>
+      <img src="https://via.placeholder.com/500x300?text=Recycling+in+Ghana" alt="Waste sorting and recycling">
+    </div>
+
+    <div class="solution">
+      <h3>7. Public Awareness & Education</h3>
+      <p>Educate citizens, especially youth, about climate change through schools, media, and community outreach programs.</p>
+      <img src="https://via.placeholder.com/500x300?text=Climate+Education+Ghana" alt="Students learning about the environment">
+    </div>
+
+    <div class="solution">
+      <h3>8. Policy & Governance</h3>
+      <p>Implement and enforce strong environmental policies, support local assemblies in climate planning, and increase government investment in green initiatives.</p>
+      <img src="https://via.placeholder.com/500x300?text=Policy+Meeting+on+Climate" alt="Policy discussion and planning">
+    </div>
+
+    <div class="solution">
+      <h3>9. Water & Coastal Protection</h3>
+      <p>Build sea defense walls, restore mangroves, and protect water sources from pollution to guard against sea-level rise and drought.</p>
+      <img src="https://via.placeholder.com/500x300?text=Coastal+Defense+Wall" alt="Coastal protection infrastructure">
+    </div>
+
+    <div class="solution">
+      <h3>10. Climate Finance & Innovation</h3>
+      <p>Provide funding for green startups, attract climate investments, and reward eco-friendly innovations to accelerate sustainable development.</p>
+      <img src="https://via.placeholder.com/500x300?text=Green+Innovation+Hub" alt="Innovative climate project">
+    </div>
+  </div>
+
+  <script>
+    // Reveal on scroll
+    window.addEventListener('scroll', () => {
+      document.querySelectorAll('.solution').forEach(el => {
+        const top = el.getBoundingClientRect().top;
+        if (top < window.innerHeight * 0.9) {
+          el.classList.add('show');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

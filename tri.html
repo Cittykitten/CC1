@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en-GH">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Climate Watch Ghana | Data-Driven Insights</title>
+    <style>
+        
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        @media screen and (max-width:768px) {
+            .dashboard{
+                display: flex;
+                flex-wrap: wrap;
+            }            
+        }
+        
+        .data-card {
+            background: url(images/4383262-hd_1920_1080_30fps.mp4);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        
+        .data-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+        
+        .map-visual {
+            height: 300px;
+            background: #e9f5f0;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+
+    
+   
+        <section class="hero">
+            <h1>Ghana's Climate Crisis: Verified Data</h1>
+            <p>Tracking climate impacts across all 16 regions</p>
+        </section>
+        
+        <section class="dashboard">
+            <div class="data-card">
+                <h3>Temperature Rise</h3>
+                <div class="map-visual">
+                    <!-- Ghana map visualization would go here -->
+                    <div style="position: absolute; bottom: 10px; left: 10px; background: white; padding: 0.5rem; border-radius: 4px;">
+                        +1.2°C since 1960
+                    </div>
+                </div>
+                <p>Northern regions warming 30% faster than coastal areas</p>
+            </div>
+            
+            <div class="data-card">
+                <h3>Rainfall Changes</h3>
+                <div class="map-visual">
+                    <div style="position: absolute; bottom: 10px; left: 10px; background: white; padding: 0.5rem; border-radius: 4px;">
+                        -12% in Volta Basin
+                    </div>
+                </div>
+                <p>Erratic rainfall patterns disrupting farming cycles</p>
+            </div>
+        </section>
+        
+        
+    
+
+</body>
+</html>

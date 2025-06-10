@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Climate Ghana-Home</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="shortcut icon" href="images/logo.png" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" 
+  rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" 
+  integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" 
+  crossorigin="anonymous" 
+  referrerpolicy="no-referrer" />
+    <style>
+
+
+
+
+
+:root{
+    --yellow: #ffe83d;
+    --light-brown: #ffeac7;
+    --dark-brown: #2b1801;
+    --pale-brown: #4b2e01;
+    --black: #000000;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f5f5f5;
+  color: var(--dark-brown);
+  overflow-x: hidden;
+}
+
+header {
+  height: 90px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #ffffff;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  position: fixed;
+  top: 0;
+  z-index: 999;
+
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.logo img{
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 20px;
+  width: 25px;
+  align-items: center;
+  justify-content: center;
+}
+
+.active-page{
+  color: var(--dark-brown);
+  font-weight: bold;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+}
+
+.nav-links a {
+  margin-left: 2rem;
+  text-decoration: none;
+  color: var(--dark-brown);
+  font-weight: 500;
+}
+
+.nav-links a:hover {
+  color: var(--yellow);
+}
+
+.cta-btn {
+  margin-left: 2rem;
+  padding: 1rem 1.5rem;
+  background-color: var(--dark-brown);
+  color: var(--yellow);
+  border: 2px solid #2b1801;
+  border-radius: 5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.cta-btn:hover {
+  background-color: var(--pale-brown);
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.hamburger span {
+  height: 3px;
+  width: 25px;
+  background: var(--dark-brown);
+  margin: 4px 0;
+  transition: all 0.3s ease;
+}
+
+.nav-links.mobile {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: white;
+  padding: 1rem;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.nav-links.mobile.show {
+  display: flex;
+}
+
+
+/* Smooth fade-up on load */
+.main-section {
+  animation: fadeInUp 1s ease-out both;
+}
+
+/* Smooth transition for links & buttons */
+.nav-links a,
+.cta-btn {
+  transition: all 0.3s ease-in-out;
+}
+
+.cta-btn:hover {
+  transform: scale(1.05);
+}
+
+/* Hamburger animation */
+.hamburger span {
+  transition: all 0.3s ease-in-out;
+}
+
+@media (max-width: 768px) {
+  .main-section {
+    flex-direction: column;
+  }
+  .nav-links {
+    display: none;
+  }
+  .hamburger {
+    display: flex;
+  }
+  header{
+    width: 100%;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.learn-section {
+  display: flex;
+  flex-wrap: wrap;
+  min-height: 100vh;
+}
+
+.theme-card {
+  flex: 1;
+  min-width: 300px;
+  background: url(images/african-woman-harvesting-vegetables.jpg) no-repeat center center/cover;
+  position: relative;
+  overflow: hidden;
+}
+
+.theme-overlay {
+  background-color: rgba(0, 60, 80, 0.7);
+  color: white;
+  padding: 40px 20px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  animation: fadeIn 1s ease;
+}
+
+.theme-overlay h4 {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.85em;
+}
+
+.theme-overlay h2 {
+  font-size: 2rem;
+  margin: 10px 0;
+}
+
+.theme-icon {
+  font-size: 2.5rem;
+  margin: 20px 0;
+  animation: popIn 0.6s ease;
+}
+
+.theme-overlay p {
+  font-size: 1rem;
+  margin-bottom: 30px;
+}
+
+.carousel-controls {
+  display: flex;
+  justify-content: space-between;
+  width: 60px;
+  margin-bottom: 20px;
+}
+
+.carousel-controls button {
+  background: none;
+  border: 2px solid white;
+  color: white;
+  font-size: 1.2rem;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.carousel-controls button:hover {
+  background: white;
+  color: #003c50;
+}
+
+.theme-button {
+  padding: 10px 20px;
+  border: 2px solid white;
+  background: transparent;
+  color: white;
+  cursor:col-resize;
+  transition: all 0.3s ease;
+  align-self: flex-start;
+}
+
+.theme-button:hover {
+  background: white;
+  color: #003c50;
+}
+
+.info-card {
+  flex: 1;
+  min-width: 300px;
+  background-color: #f4f4f4;
+  padding: 60px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  animation: slideIn 1s ease;
+}
+
+.info-card small {
+  text-transform: uppercase;
+  color: #666;
+  font-size: 0.8em;
+  margin-bottom: 10px;
+}
+
+.info-card h3 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+
+.info-card p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 30px;
+  color: #444;
+}
+
+.read-more {
+  padding: 10px 20px;
+  background-color: transparent;
+  border: 2px solid #ff5a36;
+  color: #ff5a36;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  width: fit-content;
+}
+
+.read-more:hover {
+  background-color: #ff5a36;
+  color: white;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes popIn {
+  0% { transform: scale(0.5); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+
+
+
+
+
+
+
+
+
+    .masonry {
+      column-count: 3;
+      column-gap: 20px;
+      padding-top: 30px;
+    }
+
+    .card {
+      background: white;
+      margin-bottom: 20px;
+      display: inline-block;
+      width: 100%;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: fadeInUp 0.6s ease both;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    .card img {
+      width: 100%;
+      display: block;
+    }
+
+    .card-content {
+      padding: 15px;
+    }
+
+    .tag {
+      font-size: 0.7em;
+      text-transform: uppercase;
+      color: #fff;
+      padding: 4px 8px;
+      border-radius: 3px;
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+
+    .tag.red { background-color: #d32f2f; }
+    .tag.orange { background-color: #f57c00; }
+
+    .title {
+      font-size: 1.1em;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+
+    .subtitle {
+      font-size: 0.9em;
+      color: #666;
+      margin-bottom: 10px;
+    }
+
+    .tweet-card, .highlight-card, .quote-card {
+      background-color: #e0f7fa;
+      padding: 20px;
+      font-size: 0.95em;
+    }
+
+    .highlight-card {
+      background: #f55f25;
+      color: white;
+      text-align: center;
+    }
+
+    .highlight-card button {
+      margin-top: 15px;
+      padding: 8px 16px;
+      background: white;
+      color: #f55f25;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .icons {
+      margin-top: 10px;
+      font-size: 0.85em;
+      color: #444;
+    }
+
+    .icons i {
+      margin-right: 5px;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media screen and (max-width: 768px) {
+      .masonry {
+        column-count: 1;
+      }
+    }
+
+
+    @media screen and (max-width: 414px){
+      .learn-section{
+      margin-top: 70px;
+      }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 1rem;
+    }
+    .section {
+      margin-bottom: 2rem;
+    }
+    .section h2 {
+      margin-bottom: 1rem;
+      border-bottom: 2px solid #ccc;
+      padding-bottom: 0.5rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1rem;
+      /* justify-content: centerwq  ASDFGHJKL;'\
+      ?.,MNBVCXZ\A|zxcvb nm' */
+      /* align-items: center; */
+    }
+    .card {
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .card img, .card iframe {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-bottom: 1px solid #ddd;
+    }
+    .card-content {
+      padding: 1rem;
+    }
+    .card-content h3 {
+      margin: 0 0 0.5rem 0;
+      font-size: 1.1rem;
+    }
+    .card-content p {
+      font-size: 0.9rem;
+      color: #555;
+    }
+    .main-news img {
+      height: 300px;
+    }
+    .main-news .card-content {
+      padding: 1rem;
+    }
+    .highlight {
+      grid-column: span 2;
+    }
+    iframe {
+      aspect-ratio: 16 / 9;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo"><img src="images/logo.png" alt="logo"><strong>Climate Ghana</strong></div>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="impacts.html">Impacts</a>
+      <a href="mitigation.html">Solutions</a>
+      <a href="about.html">Learn</a>
+      <a href="trending.html"><span class="active-page">Blog</span></a>
+      <button class="cta-btn">Add Your Voice</button>
+    </nav>
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <nav class="nav-links mobile" id="mobileMenu">
+      <a href="index.html">Home</a>
+      <a href="impacts.html">Impacts</a>
+      <a href="mitigation.html">Solutions</a>
+      <a href="about.html">Learn</a>
+      <a href="trending.html"><span class="active-page">Blog</span></a>
+      <button class="cta-btn">Add Your Voice</button>
+    </nav>
+  <!-- </header> -->
+
+<!-- 
+    <h1>Climate Change in Ghana - Breaking News & Features</h1> -->
+  </header>
+
+
+
+
+
+
+
+
+
+
+  
+  <div class="learn-section">
+    <div class="theme-card">
+      <div class="theme-overlay">
+        <h4>THEMES</h4>
+        <h2 id="theme-title">Agriculture</h2>
+        <div class="theme-icon">🌿</div>
+        <p id="theme-description">
+          Agriculture in Ghana uses a significant portion of land and contributes to both food security and the economy.
+        </p>
+        <div class="carousel-controls">
+          <button id="prev">&#10094;</button>
+          <button id="next">&#10095;</button>
+        </div>
+        <button class="theme-button">See all themes</button>
+      </div>
+    </div>
+
+    <div class="info-card">
+      <small>CLIMATE & YOU</small>
+      <h3>What does it all mean to you?</h3>
+      <p>
+        Even though we’re starting from a lower baseline, Ghana can accelerate its efforts to adopt
+        renewable energy and contribute meaningfully to the fight against climate change.
+      </p>
+      <a href="#" class="read-more">Read more</a>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="masonry">
+
+    <div class="card">
+      <img src="images/pexels-mali-142497.jpg" alt="Image" />
+      <div class="card-content">
+        <span class="tag orange">Blog</span>
+        <div class="title">The Big, the Bold and the Beautiful: Ghana's Forests</div>
+        <div class="icons"><i class="fas fa-tree"></i> Environment</div>
+      </div>
+    </div>
+
+    <div class="card highlight-card">
+      <p>Will your home be habitable by your grandchildren?</p>
+      <button>Become a Contributor just by subscribing</button>
+    </div>
+
+    <div class="card tweet-card">
+      <p><strong>@ClimateActionGH</strong><br><small>9:00 AM · 20 May 2025</small></p>
+      <p>Retweet if you believe Ghana must act now to combat climate change. 🌍 #ClimateGhana</p>
+      <a href="#">Respond</a> · <a href="#">Retweet</a>
+    </div>
+
+        <div class="card">
+      <div class="card-content">
+        <div class="title">Climate Change Alters Insurer Risk Profiles</div>
+        <div class="icons"><i class="fas fa-cloud-sun"></i> Energy · <i class="fas fa-landmark"></i> Policy</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <!-- <img src="images/10305498-hd_1920_1080_30fps.mp4" alt="Windmill" /> -->
+       <video style="height: 200px; width: 100%;" src="images/10305498-hd_1920_1080_30fps.mp4" autoplay muted></video>
+      <div class="card-content">
+        <span class="tag red">News</span>
+        <div class="subtitle">Climate Post · 22 May 2025</div>
+        <div class="title">Bladeless Windmills: The Future of Urban Design</div>
+        <div class="icons"><i class="fas fa-wind"></i> Energy · <i class="fas fa-cogs"></i> Technology</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="images/african-american-technician-checks-maintenance-solar-panels-group-three-black-engineers-meeting-solar-station.jpg.crdownload" alt="Solar Farm" />
+      <div class="card-content">
+        <span class="tag red">News</span>
+        <div class="subtitle">24 May 2025</div>
+        <div class="title">Ghana's Largest Solar Park Gets the Green Light</div>
+        <div class="icons"><i class="fas fa-solar-panel"></i> Solar · <i class="fas fa-balance-scale"></i> Policy</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="images/pexels-singkham-178541-1108572.jpg" alt="Green investment falls" />
+    </div>
+
+    <div class="card">
+      <div class="card-content">
+        <div class="title">Green Investment Falls to Four-Year Low</div>
+        <div class="icons"><i class="fas fa-chart-line"></i> Economy · <i class="fas fa-wrench"></i> Technology</div>
+      </div>
+    </div>
+
+    <!-- <div class="card">
+      <div class="card-content">
+        <div class="title">Climate Change Alters Insurer Risk Profiles</div>
+        <div class="icons"><i class="fas fa-cloud-sun"></i> Energy · <i class="fas fa-landmark"></i> Policy</div>
+      </div>
+    </div> -->
+
+    <div class="card">
+      <img src="images/Screenshot 2025-05-13 120129.png" alt="Image of a seedling germinating in a light bulb" />
+    </div>
+
+        <div class="card tweet-card">
+      <p><strong>@GreenFutureGH</strong><br><small>8:30 AM · 22 May 2025</small></p>
+      <p>Ghana’s youth hold the power to protect our environment. 🌱 Let’s plant trees, reduce waste, and speak up for our future. 💚 #ActForGhana #ClimateYouth</p>
+      <a href="#">Respond</a> · <a href="#">Retweet</a>
+    </div>
+
+
+
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="container">
+    <section class="section main-news">
+      <h2>Main News</h2>
+      <div class="card highlight">
+        <img src="images/pexels-the-artboard-131151099-10228155.jpg"Climate Action Ghana">
+        <div class="card-content">
+          <h3>Urgent Call: Climate Change Threatens Ghana’s Coastal Regions</h3>
+          <p>Rising sea levels and increased tidal surges are threatening homes and livelihoods in Keta and surrounding communities. Experts urge immediate action to enhance coastal resilience.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Spotlight</h2>
+      <div class="grid">
+        <div class="card">
+          <img src="https://www.ghanabusinessnews.com/wp-content/uploads/2025/05/Richard-Adu-Poku.png" alt="Agri-business">
+          <div class="card-content">
+            <h3>Collapse of agri-business</h3> 
+            <h5>23 hours ago</h5>
+            <p>Mr Adu-Poku said climate change was having devastating impacts on subsistence farming practices which represented about 70 per cent of the nation’s farming practices. </p>
+          </div>
+        </div>
+        <div class="card">
+          <!-- <img src="https://source.unsplash.com/featured/?ghana,flood" alt="Flooding"> -->
+           <iframe width="560" height="315" src="https://www.youtube.com/embed/6VopN3ULLD0?si=vA_w-OApRiY_Kntj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          <div class="card-content">
+            <h3>Flooding Hits Accra</h3>
+            <h5>4 days ago</h5>
+            <p>Heavy rains have displaced thousands in Accra, exposing the city’s inadequate drainage infrastructure.</p>
+          </div>
+        </div>
+        <div class="card">
+          <!-- <img src="https://source.unsplash.com/featured/?ghana,recycle" alt="Recycling"> -->
+           <iframe width="560" height="315" src="https://www.youtube.com/embed/84fbQspXj_U?si=rvQMQhyWaiO69sSn" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          <div class="card-content">
+            <h3>Accra’s Youth Lead Recycling Campaign</h3>
+            <h5>6 days ago</h5>
+            <p>Young environmentalists are turning trash into treasure and spreading awareness across the capital city.</p>
+          </div>
+        </div>
+        <div class="card">
+          <!-- <img src="https://source.unsplash.com/featured/?ghana,flood" alt="Flooding"> -->
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/18EhNdH9-ks?si=awea8vfVaNE6Q_T0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          <div class="card-content">
+            <h3>Green Financing</h3>
+            <h5>3 weeks ago</h5>
+            <p>Ghana is turning to green financing to fund its climate goals, tackling emissions and challenges like erosion, deforestation, and erratic rainfall.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Trending Now</h2>
+      <div class="grid">
+        <div class="card">
+          <img src="images/3d-rendering-wood-logs.jpg" alt="Deforestation">
+           <!-- <video src="images/4383262-hd_1920_1080_30fps.mp4"></video> -->
+          <div class="card-content">
+            <h3>Deforestation Dilemma</h3>
+            <h5>30th march 2025</h5>
+            <p>Ghana loses approximately 135,000 hectares of forest every year—putting biodiversity and water resources at risk.</p>
+          </div>
+        </div>
+        <div class="card">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/CoIVZwkagio?si=X1wajhki3vX19Ndv" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          <div class="card-content">
+            <h3>Documentary: Ghana’s Climate Journey</h3>
+            <h5>2nd March 2025</h5>
+            <p>Watch how climate change is impacting agriculture and education in northern Ghana.</p>
+          </div>
+        </div>
+        <div class="card">
+          <img src="images/african-woman-harvesting-vegetables.jpg" alt="Climate Farming">
+          <div class="card-content">
+            <h3>Smart Farming Innovation</h3>
+            <h5>12th February 2025</h5>
+            <p>Ghanaian farmers embrace digital tools to adapt to changing weather patterns and improve food security.</p>
+          </div>
+        </div>
+                <div class="card">
+          <!-- <img src="images/african-woman-harvesting-vegetables.jpg" alt="Climate Farming"> -->
+           <iframe width="560" height="315" src="https://www.youtube.com/embed/nxxYA6NBboI?si=AsbEo-Cd8CEvD5vl" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          <div class="card-content">
+            <h3>Coastal Erosion Hits Agavedzi, Ghana</h3>
+            <h5>12th February 2025</h5>
+            <p>Tidal waves are destroying homes in Agavedzi, leaving families in shelters and still waiting for sea protection.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Express Posts</h2>
+      <div class="grid">
+
+
+        <div class="card">
+          <!-- <img src="https://source.unsplash.com/featured/?ghana,solar" alt="Solar Ghana"> -->
+           <iframe width="560" height="315" src="https://www.youtube.com/embed/j8xmJVCaKTA?si=SN2HHY9UzlfUZo9-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          <div class="card-content">
+            <h3>Solar Energy on the Rise</h3>
+            <h5>23rd January 2025</h5>
+            <p>Rural areas in Ghana are increasingly turning to solar energy, reducing reliance on the national grid and promoting clean power.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <!-- <img src="images/air-conditioning-decoration-interior.jpg" alt="Water Scarcity"> -->
+           <iframe width="560" height="315" src="https://www.youtube.com/embed/IsJnCIjup-0?si=9OcA4I226E0d3xi0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          <div class="card-content">
+            <h3>Water Scarcity in Upper East</h3>
+            <h5>5th January 2025</h5>
+            <p>Droughts in Bolgatanga are drying up rivers and challenging communities' access to clean water.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/Bg9GXLoLpiQ?si=i1C6LaSNJUK7n9x1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          <div class="card-content">
+            <h3>Climate Voices from Ghana</h3>
+            <h5>13th December 2024</h5>
+            <p>Hear firsthand from locals facing the direct impacts of climate change.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <!-- <img src="images/abubakar-balogun-2YqtSxjCS9Y-unsplash.jpg" alt="Ghana Coast"> -->
+           <iframe src="https://www.voanews.com/embed/player/0/6621207.html?type=video" frameborder="0" scrolling="no" width="640" height="360" allowfullscreen></iframe>
+          <div class="card-content">
+            <h3>Community-led Mangrove Restoration</h3>
+            <h5>10 months ago</h5>
+            <p>Volunteers in Ada Foah plant mangroves to prevent erosion and protect fisheries.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+
+
+
+
+ <footer class="ghana-footer">
+  <div class="footer-container">
+
+    <div class="footer-column subscribe">
+      <h2>Climate Ghana</h2>
+      <p>Subscribe to our newsletter to stay updated on climate action and events across Ghana.</p>
+    <form id="subscribe-form" onsubmit="showThankYou(event)">
+      <input type="email" id="email" placeholder="Enter your email" required />
+      <button type="submit">Subscribe</button>
+    </form>
+    <p id="thank-you" style="display: none; color: var(--yellow); margin-top: 10px;">
+      ✅ Thanks for subscribing!
+    </p>
+
+    </div>
+
+    <div class="footer-column">
+      <h3>Resources</h3>
+      <ul>
+        <li><a href="/about.html">Learn</a></li>
+        <li><a href="/trending.html">Blog</a></li>
+        <li><a href="https://acetforafrica.org/our-work/?gad_source=1&gad_campaignid=1489445445&gbraid=0AAAAAC-7cVuCReKnMpiBrY_U2fiX9mYSF&gclid=Cj0KCQjwotDBBhCQARIsAG5pinNTWJYIb9Ca2Dy-ToopkzJvbeaRUVkCFsMlexCk_hXCpv-3iO-xFoQaAulYEALw_wcB">Reports & Articles</a></li>
+        <li><a href="/about.html">FAQs</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      <h3>Take Action</h3>
+      <ul>
+        <li><a href="tri2.html">Climate Events</a></li>
+        <li><a href="https://populationmatters.org/campaigns/?gad_source=1&gad_campaignid=477059608&gbraid=0AAAAADyIiKAbLEjrICa6jnl32UpGaxTv3&gclid=Cj0KCQjwotDBBhCQARIsAG5pinOspdWUEkr00ZPMoMc36HmDp7Xycj7lCAQ_LTY02EqEf3axET_9GuoaAgCrEALw_wcB">Youth Campaigns</a></li>
+        <li><a href="voice.html">Join a club</a></li>
+        <li><a href="tri4.html">Take Action</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-column contact">
+      <h3>Contact Us</h3>
+      <p><strong>Address:</strong><br> Tema, Greater Accra, Ghana</p>
+      <p><strong>Email:</strong> <a href="mailto:tegahtiana14@gmail.com">tegahtiana14@gmail.com</a></p>
+      <p><strong>Phone:</strong> +233 246 229 036</p>
+      <div class="socials">
+        <a href="https://www.facebook.com/climatescienceinfo/"><i style="color: #ffffcc;" class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://x.com/ClimateGhana"><i style="color: #54ccff;" class="fa-brands fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/_climatechange4ghana/"><i style="color: #ff47c8;" class="fa-brands fa-instagram"></i></a>
+        <a href="https://www.youtube.com/watch?v=5xRW61ACU20"><i style="color: #ff3c3c;"  class="fa-brands fa-youtube"></i></a>
+      </div>
+    </div>
+
+  </div>
+  <div class="footer-bottom">
+    &copy; 2025 Climate Ghana. Built for awareness and change by tegah_tiana
+  </div>
+</footer>
+
+<script>
+  function showThankYou(event) {
+    event.preventDefault(); // prevent form from reloading page
+    document.getElementById('subscribe-form').style.display = 'none';
+    document.getElementById('thank-you').style.display = 'block';
+  }
+</script>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    let isOpen = false;
+    hamburger.addEventListener('click', () => {
+      isOpen = !isOpen;
+      mobileMenu.classList.toggle('show');
+
+      if (isOpen) {
+        hamburger.innerHTML = '&times;';
+      } else {
+        hamburger.innerHTML = '<span></span><span></span><span></span>';
+      }
+    });
+  </script>
+
+
+
+
+</body>
+</html>
