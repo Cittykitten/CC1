@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Climate Ghana-Home</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <style>
+    :root {
+      --yellow: #ffe83d;
+      --light-brown: #ffeac7;
+      --dark-brown: #2b1801;
+      --pale-brown: #4b2e01;
+      --black: #000000;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: var(--dark-brown);
+      line-height: 1.6;
+    }
+
+    /* Header Styles (Unchanged) */
+    header {
+      height: 90px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background-color: #ffffff;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      position: fixed;
+      z-index: 999;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo img {
+      height: 20px;
+      width: 25px;
+    }
+
+    .active-page {
+      color: var(--dark-brown);
+      font-weight: bold;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-links a {
+      margin-left: 2rem;
+      text-decoration: none;
+      color: var(--dark-brown);
+      font-weight: 500;
+    }
+
+    .nav-links a:hover {
+      color: var(--yellow);
+    }
+
+    .cta-btn {
+      margin-left: 2rem;
+      padding: 1rem 1.5rem;
+      background-color: var(--dark-brown);
+      color: var(--yellow);
+      border: 2px solid #2b1801;
+      border-radius: 5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .cta-btn:hover {
+      background-color: var(--pale-brown);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .hamburger span {
+      height: 3px;
+      width: 25px;
+      background: var(--dark-brown);
+      margin: 4px 0;
+      transition: all 0.3s ease;
+    }
+
+    .nav-links.mobile {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background-color: white;
+      padding: 1rem;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+    }
+
+    .nav-links.mobile.show {
+      display: flex;
+    }
+
+    /* New Body Styles */
+    main {
+      padding-top: 90px; /* Offset for fixed header */
+    }
+
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      background: linear-gradient(rgba(43, 24, 1, 0.8), rgba(43, 24, 1, 0.8)), 
+                  url('images/hero-bg.jpg') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      padding: 0 5%;
+      color: white;
+    }
+
+    .hero-content {
+      max-width: 600px;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .hero p {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .highlight {
+      color: var(--yellow);
+      font-weight: 600;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 30px;
+      background-color: transparent;
+      color: white;
+      border: 2px solid white;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: white;
+      color: var(--dark-brown);
+    }
+
+    /* Climate Definition Section */
+    .climate-definition {
+      padding: 80px 5%;
+      background-color: white;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 50px;
+    }
+
+    .definition-content {
+      flex: 1;
+    }
+
+    .definition-content h2 {
+      font-size: 2rem;
+      color: var(--dark-brown);
+      margin-bottom: 20px;
+    }
+
+    .definition-content p {
+      margin-bottom: 15px;
+      color: #555;
+    }
+
+    .definition-image {
+      flex: 1;
+    }
+
+    .definition-image img {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    /* Info Cards Section */
+    .info-cards {
+      padding: 80px 5%;
+      background-color: #f9f9f9;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 50px;
+    }
+
+    .section-header h2 {
+      font-size: 2rem;
+      color: var(--dark-brown);
+      margin-bottom: 15px;
+    }
+
+    .section-header p {
+      color: #666;
+      font-size: 1.1rem;
+    }
+
+    .cards-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+    }
+
+    .card-image {
+      height: 200px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .card-body {
+      padding: 25px;
+    }
+
+    .card-body h3 {
+      font-size: 1.4rem;
+      color: var(--dark-brown);
+      margin-bottom: 15px;
+    }
+
+    .card-body p {
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    .card-link {
+      color: var(--dark-brown);
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .card-link::after {
+      content: '→';
+      margin-left: 5px;
+      transition: transform 0.3s ease;
+    }
+
+    .card-link:hover::after {
+      transform: translateX(5px);
+    }
+
+    /* Call to Action Section */
+    .cta-section {
+      padding: 80px 5%;
+      background-color: var(--dark-brown);
+      color: white;
+    }
+
+    .cta-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 50px;
+    }
+
+    .cta-image {
+      flex: 1;
+    }
+
+    .cta-image img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .cta-content {
+      flex: 1;
+    }
+
+    .cta-content h2 {
+      font-size: 2.2rem;
+      margin-bottom: 20px;
+    }
+
+    .cta-content p {
+      font-size: 1.1rem;
+      margin-bottom: 30px;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      padding: 15px 40px;
+      background-color: var(--yellow);
+      color: var(--dark-brown);
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .cta-btn:hover {
+      background-color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    /* Footer Styles (Unchanged) */
+    .ghana-footer {
+      background-color: var(--dark-brown);
+      color: var(--yellow);
+      padding: 40px 20px 20px;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .footer-column {
+      flex: 1 1 220px;
+      min-width: 200px;
+    }
+
+    .footer-column h2, .footer-column h3 {
+      color: var(--yellow);
+      margin-bottom: 15px;
+    }
+
+    .footer-column p, .footer-column li {
+      font-size: 0.95em;
+    }
+
+    .footer-column ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-column li {
+      margin-bottom: 8px;
+    }
+
+    .footer-column a {
+      text-decoration: none;
+      color: var(--light-brown);
+    }
+
+    .footer-column a:hover {
+      text-decoration: underline;
+    }
+
+    .subscribe input[type="email"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 4px;
+    }
+
+    .subscribe button {
+      background-color: var(--yellow);
+      color: var(--black);
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+
+    .subscribe button:hover {
+      background-color: var(--light-brown);
+      transform: scale(1.05);
+      font-weight: bold;
+    }
+
+    .socials a {
+      margin-right: 10px;
+      display: inline-block;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 0.85em;
+      color: var(--light-brown);
+    }
+
+    #thank-you {
+      transition: opacity 0.3s ease;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+      
+      .hero p {
+        font-size: 1.2rem;
+      }
+      
+      .container, .cta-container {
+        flex-direction: column;
+      }
+      
+      .definition-image, .cta-image {
+        order: -1;
+        width: 100%;
+      }
+      
+      .cards-container {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        display: none;
+      }
+      
+      .hamburger {
+        display: flex;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo"><img src="images/logo.png" alt="logo"><strong>Climate Ghana</strong></div>
+    <nav class="nav-links">
+      <a href="index.html"><span class="active-page">Home</span></a>
+      <a href="impacts.html">Impacts</a>
+      <a href="mitigation.html">Solutions</a>
+      <a href="about.html">Learn</a>
+      <a href="trending.html">Blog</a>
+      <button class="cta-btn">Add Your Voice</button>
+    </nav>
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <nav class="nav-links mobile" id="mobileMenu">
+      <a href="index.html">Home</a>
+      <a href="impacts.html">Impacts</a>
+      <a href="mitigation.html">Solutions</a>
+      <a href="about.html">Learn</a>
+      <a href="trending.html">Blog</a>
+      <button class="cta-btn">Add Your Voice</button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1>A Good Planet is Hard to Find</h1>
+        <p>Confronting the Climate Crisis <span class="highlight">Before It's Too Late</span></p>
+        <a href="about.html" class="btn">Learn more</a>
+      </div>
+    </section>
+
+    <!-- Climate Definition Section -->
+    <section class="climate-definition">
+      <div class="container">
+        <div class="definition-content">
+          <h2>What is Climate Change?</h2>
+          <p>Climate change refers to long-term shifts in temperatures and weather patterns, primarily caused by human activities such as burning fossil fuels, deforestation, and industrial emissions.</p>
+          <p>While some changes are natural, what's happening now is mostly because of human activity. When we drive cars, use electricity from coal, or cut down trees, we release gases like carbon dioxide (CO₂) into the air. These gases trap heat, making the planet warmer—like wrapping the Earth in a thick blanket.</p>
+        </div>
+        <div class="definition-image">
+          <img src="images/pexels-arthousestudio-4310289.jpg" alt="Climate change illustration" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <!-- Info Cards Section -->
+    <section class="info-cards">
+      <div class="section-header">
+        <h2>Learn About Climate Change</h2>
+        <p>Explore the facts, understand the impacts, and discover how you can help</p>
+      </div>
+      
+      <div class="cards-container">
+        <div class="card">
+          <div class="card-image" style="background-image: url('images/42937761.jpg');"></div>
+          <div class="card-body">
+            <h3>The Science</h3>
+            <p>Understand how greenhouse gases work and their impact on our planet's climate system.</p>
+            <a href="#" class="card-link">Learn more</a>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="card-image" style="background-image: url('images/pexels-markusspiske-101977.jpg');"></div>
+          <div class="card-body">
+            <h3>Ghana's Impact</h3>
+            <p>See how climate change is affecting different regions and communities in Ghana.</p>
+            <a href="impacts.html" class="card-link">Learn more</a>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="card-image" style="background-image: url('images/solutions.jpg');"></div>
+          <div class="card-body">
+            <h3>Take Action</h3>
+            <p>Discover practical solutions and how you can contribute to climate action.</p>
+            <a href="mitigation.html" class="card-link">Learn more</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section class="cta-section">
+      <div class="cta-container">
+        <div class="cta-image">
+          <img src="images/natural-disaster-landscape.jpg" alt="People taking climate action" loading="lazy">
+        </div>
+        <div class="cta-content">
+          <h2>Join the Movement</h2>
+          <p>Be part of the solution. Together we can make a difference in fighting climate change in Ghana.</p>
+          <a href="#subscribe" class="cta-btn">Get Involved</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="ghana-footer">
+    <div class="footer-container">
+      <div class="footer-column subscribe">
+        <h2>Climate Ghana</h2>
+        <p id="subscribe">Subscribe to our newsletter to stay updated on climate action and events across Ghana.</p>
+        <form id="subscribe-form" onsubmit="showThankYou(event)">
+          <input type="email" id="email" placeholder="Enter your email" required />
+          <button type="submit">Subscribe</button>
+        </form>
+        <p id="thank-you" style="display: none; color: var(--yellow); margin-top: 10px;">
+          ✅ Thanks for subscribing!
+        </p>
+      </div>
+
+      <div class="footer-column">
+        <h3>Resources</h3>
+        <ul>
+          <li><a href="/about.html">Learn</a></li>
+          <li><a href="/trending.html">Blog</a></li>
+          <li><a href="https://acetforafrica.org/our-work/">Reports & Articles</a></li>
+          <li><a href="/about.html">FAQs</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h3>Take Action</h3>
+        <ul>
+          <li><a href="tri2.html">Climate Events</a></li>
+          <li><a href="https://populationmatters.org/campaigns/">Youth Campaigns</a></li>
+          <li><a href="voice.html">Join a club</a></li>
+          <li><a href="tri4.html">Take Action</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column contact">
+        <h3>Contact Us</h3>
+        <p><strong>Address:</strong><br> Tema, Greater Accra, Ghana</p>
+        <p><strong>Email:</strong> <a href="mailto:tegahtiana14@gmail.com">tegahtiana14@gmail.com</a></p>
+        <p><strong>Phone:</strong> +233 246 229 036</p>
+        <div class="socials">
+          <a href="https://www.facebook.com/climatescienceinfo/"><i style="color: #ffffcc;" class="fa-brands fa-x-twitter"></i></a>
+          <a href="https://x.com/ClimateGhana"><i style="color: #54ccff;" class="fa-brands fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/_climatechange4ghana/"><i style="color: #ff47c8;" class="fa-brands fa-instagram"></i></a>
+          <a href="https://www.youtube.com/watch?v=5xRW61ACU20"><i style="color: #ff3c3c;" class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2025 Climate Ghana. Built for awareness and change by tegah_tiana
+    </div>
+  </footer>
+
+  <script>
+    function showThankYou(event) {
+      event.preventDefault();
+      document.getElementById('subscribe-form').style.display = 'none';
+      document.getElementById('thank-you').style.display = 'block';
+    }
+
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    let isOpen = false;
+    hamburger.addEventListener('click', () => {
+      isOpen = !isOpen;
+      mobileMenu.classList.toggle('show');
+
+      if (isOpen) {
+        hamburger.innerHTML = '&times;';
+      } else {
+        hamburger.innerHTML = '<span></span><span></span><span></span>';
+      }
+    });
+  </script>
+</body>
+</html>

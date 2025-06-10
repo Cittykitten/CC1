@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Food Slider</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      background: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .slider-box {
+      position: relative;
+      width: 100%;
+      max-width: 1000px;
+      overflow: hidden;
+    }
+
+    .slider-track {
+      display: flex;
+      scroll-behavior: smooth;
+      overflow-x: scroll;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      padding: 20px 0;
+    }
+
+
+     .slider-track::-webkit-scrollbar {
+     display: none; 
+     }
+
+
+    .slider-card {
+      position: relative;
+      min-width: 260px;
+      min-height: 400px;
+      margin: 0 10px;
+      background: #fff;
+      border-radius: 7px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+      overflow: hidden;
+      flex-shrink: 0;
+      scroll-snap-align: center;
+    }
+
+    .slider-card img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+    }
+
+    .slider-card h3 {
+      font-size: 1rem;
+      margin: 10px;
+    }
+
+    .slider-card .money-tag {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 3px 8px;
+      font-size: 0.9rem;
+      border-radius: 8px;
+    }
+
+    .dot-area {
+      margin-top: 20px;
+      display: flex;
+      gap: 5px;
+      justify-content: center;
+    }
+
+    .small-dot {
+      width: 10px;
+      height: 10px;
+      background: lightgray;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .small-dot.active {
+      background: orange;
+    }
+
+    .move-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.8);
+      border: none;
+      padding: 8px 14px;
+      font-size: 20px;
+      cursor: pointer;
+      z-index: 1;
+      border-radius: 50%;
+    }
+
+    .move-btn.lefty {
+      left: 10px;
+    }
+
+    .move-btn.righty {
+      right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="slider-box">
+    <button class="move-btn lefty" onclick="goLeft()">&#10094;</button>
+    <div class="slider-track" id="mySlider">
+      <div class="slider-card">
+        <img src="images/pexels-mart-production-7767749.jpg" alt="Burger">
+        <div class="money-tag">$12</div>
+        <h3>Burger</h3>
+      </div>
+      <div class="slider-card">
+        <img src="images/pexels-luan-rodrigues-1369445-10973224.jpg" alt="Fish Curry">
+        <div class="money-tag">$18</div>
+        <h3>Fish Curry</h3>
+      </div>
+      <div class="slider-card">
+        <img src="images/pexels-pixabay-60008.jpg" alt="Pancake">
+        <div class="money-tag">$15</div>
+        <h3>Pane Cake</h3>
+      </div>
+      <div class="slider-card">
+        <img src="images/pexels-mart-production-7767749.jpg" alt="Strawberry Cake">
+        <div class="money-tag">$20</div>
+        <h3>Strawberry Cake</h3>
+      </div>
+      <div class="slider-card">
+        <img src="images/DALL·E 2025-05-13 11.31.08 - A detailed infographic-style illustration titled 'How Climate Change Affects Everyday Life in Ghana'. The image is divided into visual sections showin.webp" alt="French Toast">
+        <div class="money-tag">$16</div>
+        <h3>French Toast</h3>
+      </div>
+            <div class="slider-card">
+        <img src="images/pexels-mart-production-7767749.jpg" alt="Pancake">
+        <div class="money-tag">$15</div>
+        <h3>Pane Cake</h3>
+      </div>
+            <div class="slider-card">
+        <img src="images/pexels-michael-pointner-134459625-18316989.jpg" alt="Pancake">
+        <div class="money-tag">$15</div>
+        <h3>Pane Cake</h3>
+      </div>
+            <div class="slider-card">
+        <img src="images/pexels-markusspiske-101977.jpg" alt="Pancake">
+        <div class="money-tag">$15</div>
+        <h3>Pane Cake</h3>
+      </div>
+            <div class="slider-card">
+        <img src="images/pexels-snowiemoon-2972210.jpg" alt="Pancake">
+        <div class="money-tag">$15</div>
+        <h3>Pane Cake</h3>
+      </div>
+            <div class="slider-card">
+        <img src="images/pexels-mart-production-7767749.jpg" alt="Pancake">
+        <div class="money-tag">$15</div>
+        <h3>Pane Cake</h3>
+      </div>
+    </div>
+    <button class="move-btn righty" onclick="goRight()">&#10095;</button>
+  </div>
+  <div class="dot-area" id="dotHolder"></div>
+
+  <script>
+    const mySlider = document.getElementById('mySlider');
+    const slideCards = document.querySelectorAll('.slider-card');
+    const dotHolder = document.getElementById('dotHolder');
+    let curSlide = 0;
+    let startX = 0;
+    let isDown = false;
+
+    function makeDots() {
+      dotHolder.innerHTML = '';
+      for (let i = 0; i < slideCards.length; i++) {
+        let dotty = document.createElement('div');
+        dotty.className = 'small-dot';
+        if (i === curSlide) dotty.classList.add('active');
+        dotty.addEventListener('click', () => changeSlide(i));
+        dotHolder.appendChild(dotty);
+      }
+    }
+
+    function markDot() {
+      document.querySelectorAll('.small-dot').forEach((dot, i) => {
+        dot.classList.toggle('active', i === curSlide);
+      });
+    }
+
+    function changeSlide(index) {
+      if (index < 0 || index >= slideCards.length) return;
+      curSlide = index;
+      const card = slideCards[curSlide];
+      const boxRect = mySlider.getBoundingClientRect();
+      const cardRect = card.getBoundingClientRect();
+      const leftAmt = mySlider.scrollLeft + (cardRect.left - boxRect.left) - (mySlider.clientWidth - card.offsetWidth) / 2;
+      mySlider.scrollTo({ left: leftAmt, behavior: 'smooth' });
+      markDot();
+    }
+
+    function goRight() {
+      changeSlide(curSlide + 1);
+    }
+
+    function goLeft() {
+      changeSlide(curSlide - 1);
+    }
+
+    function autoRoll() {
+      setInterval(() => {
+        curSlide = (curSlide + 1) % slideCards.length;
+        changeSlide(curSlide);
+      }, 5000);
+    }
+
+    mySlider.addEventListener('mousedown', e => {
+      isDown = true;
+      startX = e.pageX;
+    });
+    mySlider.addEventListener('mouseup', e => {
+      isDown = false;
+      const dist = e.pageX - startX;
+      if (dist > 50) goLeft();
+      else if (dist < -50) goRight();
+    });
+
+    makeDots();
+    window.addEventListener('load', () => {
+      changeSlide(curSlide);
+      autoRoll();
+    });
+    window.addEventListener('resize', () => changeSlide(curSlide));
+  </script>
+</body>
+</html>
